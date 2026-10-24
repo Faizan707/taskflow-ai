@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Syne", sans-serif;
+  --font-sans: "Manrope", sans-serif;
+
+  --color-ink: #12212b;
+  --color-ink-soft: #2a3d4a;
+  --color-paper: #f3f6f4;
+  --color-paper-deep: #e4ebe6;
+  --color-sea: #0f766e;
+  --color-sea-bright: #14b8a6;
+  --color-sea-mist: #d7f3ee;
+  --color-coral: #c45c26;
+  --color-line: #c9d5ce;
+  --color-danger: #b42318;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background:
+      radial-gradient(ellipse 80% 50% at 10% -10%, rgba(20, 184, 166, 0.18), transparent 55%),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(196, 92, 38, 0.1), transparent 45%),
+      linear-gradient(180deg, #f7faf8 0%, var(--color-paper) 40%, #eef3f0 100%);
+    background-attachment: fixed;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  button:not(:disabled),
+  [type='button']:not(:disabled),
+  [type='submit']:not(:disabled),
+  [type='reset']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [type='button']:disabled,
+  [type='submit']:disabled,
+  [type='reset']:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .surface-grid {
+    background-image:
+      linear-gradient(rgba(18, 33, 43, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(18, 33, 43, 0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .animate-rise {
+    animation: rise 0.55s ease-out both;
+  }
+
+  .animate-fade {
+    animation: fade 0.4s ease-out both;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
