@@ -65,10 +65,10 @@ function SidebarNav({
           onClick={onNavigate}
           className={({ isActive }) =>
             [
-              'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition',
+              'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition',
               isActive
-                ? 'bg-[#0073ea]/10 text-[#0073ea]'
-                : 'text-ink-soft hover:bg-black/4 hover:text-ink',
+                ? 'bg-brand/10 text-brand shadow-sm shadow-brand/5'
+                : 'text-ink-soft hover:bg-muted hover:text-ink',
             ].join(' ')
           }
         >
@@ -85,8 +85,8 @@ export function AppShell() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-[#f6f7fb] lg:grid lg:grid-cols-[248px_1fr]">
-      <div className="sticky top-0 z-30 flex items-center justify-between border-b border-black/5 bg-white px-4 py-3 lg:hidden">
+    <div className="min-h-screen lg:grid lg:grid-cols-[260px_1fr]">
+      <div className="glass-panel sticky top-0 z-30 flex items-center justify-between border-b border-black/5 px-4 py-3 lg:hidden">
         <Button type="button" variant="secondary" size="sm" onClick={() => setOpen(true)} className="px-3 py-2">
           Menu
         </Button>
@@ -98,32 +98,34 @@ export function AppShell() {
         <button
           type="button"
           aria-label="Close menu"
-          className="fixed inset-0 z-40 bg-ink/40 animate-fade lg:hidden"
+          className="animate-overlay-in fixed inset-0 z-40 bg-[#0f1c24]/40 backdrop-blur-[2px] lg:hidden"
           onClick={() => setOpen(false)}
         />
       )}
 
       <aside
         className={[
-          'fixed inset-y-0 left-0 z-50 flex w-[248px] flex-col border-r border-black/5 bg-white transition-transform duration-300 lg:sticky lg:top-0 lg:h-screen lg:translate-x-0',
+          'fixed inset-y-0 left-0 z-50 flex w-[260px] flex-col border-r border-black/[0.05] bg-white shadow-drawer transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:sticky lg:top-0 lg:h-screen lg:translate-x-0 lg:shadow-none',
           open ? 'translate-x-0' : '-translate-x-full',
         ].join(' ')}
       >
-        <div className="px-5 pb-4 pt-6">
-          <p className="font-display text-xl font-extrabold tracking-tight text-ink">TaskFlow</p>
-          <p className="mt-1 text-xs text-ink-soft">Work management</p>
+        <div className="relative overflow-hidden px-5 pb-5 pt-7">
+          <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-brand/10" />
+          <div className="pointer-events-none absolute -left-4 bottom-0 h-16 w-16 rounded-full bg-sea/10" />
+          <p className="relative font-display text-xl font-extrabold tracking-tight text-ink">TaskFlow</p>
+          <p className="relative mt-1 text-xs text-ink-soft/75">Work management</p>
         </div>
 
         <SidebarNav isAdmin={isAdmin} onNavigate={() => setOpen(false)} />
 
-        <div className="mt-auto border-t border-black/5 p-4">
-          <div className="mb-3 flex items-center gap-3 rounded-xl bg-[#f6f7fb] px-3 py-3">
-            <div className="grid h-9 w-9 place-items-center rounded-full bg-[#0073ea]/15 text-sm font-bold text-[#0073ea]">
+        <div className="mt-auto border-t border-black/[0.05] p-4">
+          <div className="mb-3 flex items-center gap-3 rounded-2xl bg-muted px-3 py-3">
+            <div className="grid h-10 w-10 place-items-center rounded-full bg-brand/15 text-sm font-bold text-brand">
               {user?.name?.slice(0, 1)?.toUpperCase() || 'U'}
             </div>
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold text-ink">{user?.name}</p>
-              <p className="truncate text-xs capitalize text-ink-soft">{user?.role}</p>
+              <p className="truncate text-xs capitalize text-ink-soft/70">{user?.role}</p>
             </div>
           </div>
           <Button type="button" variant="secondary" fullWidth onClick={logout}>

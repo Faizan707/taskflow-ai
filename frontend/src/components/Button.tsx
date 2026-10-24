@@ -4,17 +4,18 @@ export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'ink'
 export type ButtonSize = 'sm' | 'md' | 'lg'
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-[#0073ea] text-white shadow-sm hover:bg-[#0060c2]',
+  primary:
+    'bg-brand text-white shadow-sm shadow-brand/25 hover:bg-[#0060c2] active:bg-[#0052a8]',
   secondary:
-    'border border-black/10 bg-white text-ink-soft hover:bg-[#f6f7fb] hover:text-ink',
-  ghost: 'bg-transparent text-ink-soft hover:bg-[#f6f7fb] hover:text-ink',
-  danger: 'bg-transparent text-danger hover:underline',
-  ink: 'bg-ink text-white hover:bg-black',
+    'border border-black/[0.08] bg-white text-ink-soft shadow-sm shadow-black/[0.02] hover:border-black/15 hover:bg-muted hover:text-ink',
+  ghost: 'bg-transparent text-ink-soft hover:bg-muted hover:text-ink',
+  danger: 'bg-transparent text-danger hover:bg-danger/8',
+  ink: 'bg-ink text-white shadow-sm shadow-ink/20 hover:bg-[#1a2e3a] active:bg-black',
 }
 
 const sizes: Record<ButtonSize, string> = {
-  sm: 'rounded-md px-2.5 py-1 text-xs font-semibold',
-  md: 'rounded-lg px-4 py-2.5 text-sm font-semibold',
+  sm: 'rounded-lg px-2.5 py-1.5 text-xs font-semibold',
+  md: 'rounded-xl px-4 py-2.5 text-sm font-semibold',
   lg: 'rounded-xl px-4 py-3 text-sm font-semibold',
 }
 
@@ -33,8 +34,8 @@ export function buttonClassName({
   className = '',
 }: ButtonClassOptions = {}) {
   return [
-    'inline-flex items-center justify-center gap-1.5 transition cursor-pointer',
-    'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60',
+    'inline-flex items-center justify-center gap-1.5 transition duration-150 cursor-pointer',
+    'active:scale-[0.98] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-55 disabled:active:scale-100',
     variants[variant],
     sizes[size],
     fullWidth ? 'w-full' : '',

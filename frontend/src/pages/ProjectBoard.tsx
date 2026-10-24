@@ -284,12 +284,7 @@ export default function ProjectBoard() {
           onClose={() => setTaskOpen(false)}
           footer={
             <>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => setTaskOpen(false)}
-                className="border-transparent bg-[#ececec] text-ink hover:bg-[#e2e2e2]"
-              >
+              <Button type="button" variant="secondary" onClick={() => setTaskOpen(false)}>
                 Cancel
               </Button>
               <Button type="submit" form="create-task" variant="ink" disabled={creatingTask}>
@@ -380,12 +375,7 @@ export default function ProjectBoard() {
           onClose={() => setStageOpen(false)}
           footer={
             <>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => setStageOpen(false)}
-                className="border-transparent bg-[#ececec] text-ink hover:bg-[#e2e2e2]"
-              >
+              <Button type="button" variant="secondary" onClick={() => setStageOpen(false)}>
                 Cancel
               </Button>
               <Button type="submit" form="add-stage" variant="ink" disabled={addingStage}>

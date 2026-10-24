@@ -71,7 +71,7 @@ export default function Projects() {
       )}
 
       {projects.length === 0 ? (
-        <div className="rounded-2xl border border-black/5 bg-white px-6 py-14 text-center shadow-sm">
+        <div className="rounded-3xl border border-black/[0.05] bg-white px-6 py-14 text-center shadow-modal">
           <div className="mx-auto mb-5 flex max-w-xs justify-center gap-2">
             {accents.slice(0, 3).map((color) => (
               <div key={color} className="h-20 w-16 rounded-xl bg-[#f6f7fb] p-2">
@@ -92,8 +92,8 @@ export default function Projects() {
           </Button>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm">
-          <div className="grid grid-cols-[1fr_auto_auto] gap-3 border-b border-black/5 bg-[#f6f7fb] px-5 py-2.5 text-[11px] font-semibold uppercase tracking-wide text-ink-soft">
+        <div className="overflow-hidden rounded-3xl border border-black/[0.05] bg-white shadow-sm">
+          <div className="grid grid-cols-[1fr_auto_auto] gap-3 border-b border-black/[0.05] bg-muted px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-ink-soft/70">
             <span>Project</span>
             <span className="hidden sm:block">Stages</span>
             <span>Actions</span>
@@ -102,7 +102,7 @@ export default function Projects() {
             {projects.map((project, index) => (
               <li
                 key={project.id}
-                className="grid grid-cols-[1fr_auto_auto] items-center gap-3 px-5 py-4 transition hover:bg-[#fafbff]"
+                className="grid grid-cols-[1fr_auto_auto] items-center gap-3 px-5 py-4 transition hover:bg-muted/70"
               >
                 <Link to={`/projects/${project.id}`} className="flex min-w-0 items-center gap-3">
                   <span
@@ -159,12 +159,7 @@ export default function Projects() {
           onClose={() => setOpen(false)}
           footer={
             <>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => setOpen(false)}
-                className="border-transparent bg-[#ececec] text-ink hover:bg-[#e2e2e2]"
-              >
+              <Button type="button" variant="secondary" onClick={() => setOpen(false)}>
                 Cancel
               </Button>
               <Button type="submit" form="create-project" variant="ink" disabled={creating}>

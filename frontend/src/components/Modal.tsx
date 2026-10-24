@@ -27,28 +27,30 @@ export function Modal({ title, subtitle, children, footer, onClose }: ModalProps
   }, [onClose])
 
   return createPortal(
-    <div className="fixed inset-0 z-[100] overflow-y-auto animate-fade">
+    <div className="fixed inset-0 z-[100] overflow-y-auto">
       <div className="flex min-h-full items-center justify-center p-4 sm:p-6">
         <button
           type="button"
           aria-label="Close dialog backdrop"
-          className="fixed inset-0 bg-black/25 backdrop-blur-[1px]"
+          className="animate-overlay-in fixed inset-0 bg-[#0f1c24]/40 backdrop-blur-[3px]"
           onClick={onClose}
         />
 
         <div
           role="dialog"
           aria-modal="true"
-          className="relative z-10 my-6 w-full max-w-md overflow-hidden rounded-[28px] border border-black/[0.06] bg-white shadow-[0_28px_80px_-24px_rgba(0,0,0,0.35)]"
+          className="animate-modal-in shadow-modal relative z-10 my-6 w-full max-w-md overflow-hidden rounded-[24px] bg-white"
         >
+          <div className="h-1 w-full bg-gradient-to-r from-[#0073ea] via-[#14b8a6] to-[#fdab3d]" />
+
           {(title || subtitle) && (
-            <div className="flex items-start justify-between gap-3 border-b border-black/[0.06] px-5 py-4">
+            <div className="flex items-start justify-between gap-3 px-5 pb-3 pt-4">
               <div className="min-w-0">
                 {title ? (
-                  <h2 className="text-base font-semibold tracking-tight text-ink">{title}</h2>
+                  <h2 className="font-display text-lg font-bold tracking-tight text-ink">{title}</h2>
                 ) : null}
                 {subtitle ? (
-                  <p className="mt-0.5 text-sm text-black/45">{subtitle}</p>
+                  <p className="mt-1 text-sm leading-snug text-ink-soft/80">{subtitle}</p>
                 ) : null}
               </div>
               <Button
@@ -57,14 +59,14 @@ export function Modal({ title, subtitle, children, footer, onClose }: ModalProps
                 size="sm"
                 onClick={onClose}
                 aria-label="Close"
-                className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#f3f3f3] px-0 text-black/50 hover:bg-black/10 hover:text-ink"
+                className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-muted px-0 text-ink-soft transition hover:bg-black/[0.07] hover:text-ink"
               >
                 <svg
                   viewBox="0 0 24 24"
-                  className="h-3.5 w-3.5"
+                  className="h-4 w-4"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2.4"
+                  strokeWidth="2.2"
                 >
                   <path d="M6 6l12 12M18 6 6 18" />
                 </svg>
@@ -72,10 +74,10 @@ export function Modal({ title, subtitle, children, footer, onClose }: ModalProps
             </div>
           )}
 
-          <div className="px-5 py-4">{children}</div>
+          <div className="px-5 pb-5 pt-1">{children}</div>
 
           {footer ? (
-            <div className="flex items-center justify-end gap-2 border-t border-black/[0.06] bg-[#f6f6f6] px-5 py-3.5">
+            <div className="flex items-center justify-end gap-2 border-t border-black/[0.05] bg-gradient-to-b from-muted/80 to-muted px-5 py-3.5">
               {footer}
             </div>
           ) : null}
@@ -86,7 +88,7 @@ export function Modal({ title, subtitle, children, footer, onClose }: ModalProps
   )
 }
 
-/** Muted section label + content, like “General access” / “People with access”. */
+/** Muted section label + content */
 export function ModalSection({
   label,
   children,
@@ -99,7 +101,9 @@ export function ModalSection({
   return (
     <div className={['space-y-3', className].filter(Boolean).join(' ')}>
       {label ? (
-        <p className="text-[11px] font-medium uppercase tracking-wide text-black/40">{label}</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-soft/55">
+          {label}
+        </p>
       ) : null}
       {children}
     </div>
@@ -107,4 +111,4 @@ export function ModalSection({
 }
 
 export const modalFieldClass =
-  'w-full rounded-xl border border-black/[0.08] bg-[#f6f6f6] px-3.5 py-3 text-sm text-ink outline-none transition placeholder:text-black/35 focus:border-black/20 focus:bg-white focus:ring-4 focus:ring-black/[0.04]'
+  'w-full rounded-xl border border-black/[0.07] bg-muted px-3.5 py-3 text-sm text-ink outline-none transition placeholder:text-ink-soft/45 hover:border-black/12 focus:border-brand/40 focus:bg-white focus:ring-4 focus:ring-brand/10'
